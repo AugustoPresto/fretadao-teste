@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   root 'pages#index'
 
-  resources :profiles
+  resources :users
 end
