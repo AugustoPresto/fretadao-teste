@@ -15,37 +15,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    github_url = params[:user][:github_url]
-    html_file = URI.open(github_url).read
-    html_doc = Nokogiri::HTML(html_file)
-
-    nickname = html_doc.search(".p-nickname").text.strip
-    organization = html_doc.search(".p-org").text.strip
-    location = html_doc.search(".p-label").text.strip
-    followers_and_following = html_doc.search("span.text-bold.color-fg-default").text.strip
-    if followers_and_following.include?("k")
-      array_of_numbers = followers_and_following.split("k")
-    else
-      array_of_numbers = followers_and_following.split("")
-    end
-    followers = array_of_numbers[0].to_i
-    following = array_of_numbers[1].to_i
-    stars = html_doc.search(".UnderlineNav-item.js-responsive-underlinenav-item:last-child").first.text.strip.scan(/\d/).join('').to_i
-    last_year_contributions = html_doc.search(".f4.text-normal.mb-2").text.strip.scan(/\d/).join('').to_i
-    avatar_url = html_doc.search(".avatar.avatar-user.width-full.border.color-bg-default").attr('src').value
-
-    @user = User.new(
-                      name: params[:user][:name],
-                      github_url: params[:user][:github_url],
-                      nickname: nickname,
-                      organization: (organization if organization.present?),
-                      location: (location if location.present?),
-                      followers: followers,
-                      following: following,
-                      stars: stars,
-                      last_year_contributions: last_year_contributions,
-                      avatar_url: avatar_url
-                    )
+    @user = GithubUserScraper.scrape(params[:user][:name], params[:user][:github_url])
 
     if @user.save
       redirect_to root_path 

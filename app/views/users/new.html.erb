@@ -1,8 +1,8 @@
 <div class="container w-25 my-auto align-items-center justify-content-center flex-column mt-5">
   <h3 class="text-center">Create your GitHub user</h3>
   <%= simple_form_for @user, html: { class: "d-flex flex-column my-4 justify-content-center" } do |f| %>
-      <%= f.input :name, placeholder: "Type your name", html: { class: "form-control me-2", required: true } %>
-      <%= f.input :github_url, placeholder: "http://www.github.com/your-gh-link", html: { class: "form-control me-2", required: true } %>
+      <%= f.input :name, placeholder: "Type your name", html: { class: "form-control me-2" } %>
+      <%= f.input :github_url, placeholder: "http://www.github.com/your-gh-link", html: { class: "form-control me-2" } %>
       <%= f.submit "Create User!", class: "btn btn-outline-success mt-2" %>
   <% end %>
 </div>

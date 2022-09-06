@@ -3,10 +3,10 @@ class User < ApplicationRecord
   validates :github_url, uniqueness: true
 
   def self.search_all_fields(query)
-    results = where('name LIKE :search
-                    OR nickname LIKE :search
-                    OR organization LIKE :search
-                    OR location LIKE :search',
+    results = where('name ILIKE :search
+                    OR nickname ILIKE :search
+                    OR organization ILIKE :search
+                    OR location ILIKE :search',
                     search: "%#{query}%")
               .order(:name)
     
