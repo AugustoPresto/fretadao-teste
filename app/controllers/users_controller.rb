@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(users_params)
 
     if @user.save
       redirect_to root_path 
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
+    @user.update(users_params)
     redirect_to root_path
   end
 

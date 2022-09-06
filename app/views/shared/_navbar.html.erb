@@ -1,8 +1,12 @@
 <nav class="navbar bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand d-inline" href="#">
       <%= image_tag("gh-logo.png", width: "30", height: "30", class: "d-inline-block align-text-top") %>
       GitHub
     </a>
+    <form class="justify-content-end d-flex">
+      <%= link_to("Home", root_path, class: "btn btn-outline-success mx-3") %>
+      <%= link_to("Create User", new_user_path, class: "btn btn-outline-success") %>
+    </form>
   </div>
 </nav>
