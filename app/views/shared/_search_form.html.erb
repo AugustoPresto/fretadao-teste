@@ -1,0 +1,5 @@
+<h3 class="text-center">Search for a GitHub user!</h3>
+<%= simple_form_for :search, url: root_path, method: :get, html: { class: "d-flex flex-column my-4 justify-content-center" } do |f| %>
+    <%= text_field_tag :query, params[:query], class: "form-control me-2", placeholder: "Try matz", required: true %>
+    <%= submit_tag "Search", class: "btn btn-outline-success mt-2" %>
+<% end %>
