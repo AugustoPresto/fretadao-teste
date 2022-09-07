@@ -24,9 +24,27 @@ module UsersHelper
     image_tag(@user.avatar_url, width: "200px", height: "200px", class: "rounded-circle") +
     tag.p("Name: #{@user.name}", class: "mt-3") +
     tag.p("GitHub nickname: #{@user.nickname}") +
-    tag.p(link_to("Visit GitHub profile", @user.bitlink.short_url, target: "blank")) +
+    gh_profile_link_div +
     tag.p("Seguidores: #{@user.followers}") +
     tag.p("Seguindo: #{@user.following}") +
-    tag.p("Estrelas: #{@user.stars}")
+    tag.p("Estrelas: #{@user.stars}") +
+    tag.p("Contribuições no último ano: #{@user.last_year_contributions}") +
+    display_organization +
+    display_location
+  end
+
+  def gh_profile_link_div
+    tag.div(class: "d-flex justify-content-center") do
+      tag.p("GitHub profile: ", class: "px-1") +
+      link_to(@user.bitlink.short_url, @user.bitlink.short_url, target: "blank")
+    end
+  end
+
+  def display_organization
+    @user.organization.present? ? tag.p("Organização: #{@user.organization}") : nil
+  end
+
+  def display_location
+    @user.location.present? ? tag.p("Localização: #{@user.location}") : nil
   end
 end
