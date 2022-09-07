@@ -5,7 +5,7 @@ class GithubUserScraper
       github_url = user_params[:github_url]
       html_file = URI.open(github_url).read
       @html_doc = Nokogiri::HTML(html_file)
-      User.new(set_input_hash(name, github_url, @html_doc))
+      User.new(set_input_hash(user_params[:name], github_url, @html_doc))
     end
 
     def update_gh_info_scrape(name, github_url)
