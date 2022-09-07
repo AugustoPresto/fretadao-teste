@@ -3,6 +3,6 @@ class UpdateGhInfoJob
 
   def perform(user_id)
     user = User.find(user_id)
-    pp user
+    user.update!(GithubUserScraper.update_gh_info_scrape(user.name, user.github_url))
   end
 end
