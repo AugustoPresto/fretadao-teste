@@ -14,4 +14,8 @@ class User < ApplicationRecord
     
     results.any? ? results : "No matches found"
   end
+
+  def update_gh_info_job
+    UpdateGhInfoJob.perform_async(self.id)
+  end
 end

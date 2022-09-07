@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :show, :destroy]
+  before_action :set_user, only: [:edit, :update, :show, :destroy, :update_gh_info]
 
   def index
     if params[:query].present?
@@ -36,6 +36,11 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to root_path
+  end
+
+  def update_gh_info
+    @user.update_gh_info_job
+    redirect_back(fallback_location: user_path(@user))
   end
 
   private

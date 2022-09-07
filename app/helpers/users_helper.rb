@@ -20,9 +20,9 @@ module UsersHelper
 
   def render_users_list
     @users.collect do |user|
-      tag.div(class: "d-flex justify-content-between") do
-        concat tag.p("#{user.name}") +
-        link_to("#{user.bitlink.short_url}", user.bitlink.short_url, target: "blank") +
+      tag.div(class: "d-flex justify-content-between align-items-center border-bottom") do
+        concat tag.p(user.name, class: "my-2") +
+        link_to(user.bitlink.short_url, user.bitlink.short_url, target: "blank") +
         link_to("View user", user_path(user.id)) +
         link_to("Edit user", edit_user_path(user.id))
       end
@@ -66,7 +66,7 @@ module UsersHelper
   end
 
   def user_page_btns
-    link_to("Update with GH info", edit_user_path(@user), class: "btn btn-outline-success") +
+    link_to("Update GH info", update_gh_info_path(@user), class: "btn btn-outline-success") +
     link_to("Edit user", edit_user_path(@user), class: "btn btn-outline-secondary") +
     link_to("Delete user", user_path(@user), method: :delete, class: "btn btn-outline-danger")
   end
