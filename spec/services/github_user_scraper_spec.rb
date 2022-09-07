@@ -1,10 +1,11 @@
 require "rails_helper"
 
 RSpec.describe GithubUserScraper do
-  let!(:user1) { build(:user, name: "AugustoPresto", github_url: "http://www.github.com/AugustoPresto") }
+  let!(:user) { build(:user, name: "AugustoPresto", github_url: "http://www.github.com/AugustoPresto") }
 
   before(:each) do
-    @scraped_user = GithubUserScraper.scrape(user1.name, user1.github_url)
+    user_params = { name: user.name, github_url: user.github_url }
+    @scraped_user = GithubUserScraper.scrape(user_params)
   end
 
   describe ".scrape" do

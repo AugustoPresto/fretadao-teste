@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_one :bitlink, dependent: :destroy
 
   def self.search_all_fields(query)
+    # Searches for query in all columns of the model
     results = where('name ILIKE :search
                     OR nickname ILIKE :search
                     OR github_url ILIKE :search
