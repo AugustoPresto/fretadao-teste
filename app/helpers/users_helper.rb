@@ -66,7 +66,7 @@ module UsersHelper
   end
 
   def user_page_btns
-    link_to("Update GH info", update_gh_info_path(@user), class: "btn btn-outline-success") +
+    link_to("Update GH info", update_gh_info_path(@user), class: "btn btn-outline-success", remote: true, data: { confirm: 'This action may overwrite user data. Do you really want to proceed?' }) +
     link_to("Edit user", edit_user_path(@user), class: "btn btn-outline-secondary") +
     link_to("Delete user", user_path(@user), method: :delete, class: "btn btn-outline-danger", data: { confirm: 'Are you sure?' })
   end
