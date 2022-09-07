@@ -15,6 +15,8 @@ class UsersController < ApplicationController
   end
 
   def create
+    # creates user by scraping GH URL
+    # and generates shortened link
     @user = GithubUserScraper.scrape(user_params)
     Bitlink.create_bitlink(@user) if @user.present?
 
@@ -29,7 +31,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
+    # if GH URL is changed, updates the whole user instance 
+    if @user.github_url != params[:user][:github_url]
+      @user.update(user_params)
+      @user.update_gh_info_job
+    else
+      @user.update(user_params)
+    end
     redirect_to user_path(@user)
   end
 
