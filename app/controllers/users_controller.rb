@@ -1,14 +1,13 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :show, :destroy, :update_gh_info]
+  before_action :set_user, only: %i[edit update show destroy update_gh_info]
 
   def index
-    if params[:query].present?
-      @users = User.search_all_fields(params[:query])
-    end
+    return unless params[:query].present?
+
+    @users = User.search_all_fields(params[:query])
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @user = User.new
@@ -27,11 +26,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    # if GH URL is changed, updates the whole user instance 
+    # if GH URL is changed, updates the whole user instance
     if @user.github_url != params[:user][:github_url]
       @user.update(user_params)
       @user.update_gh_info_job
@@ -53,11 +51,11 @@ class UsersController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:name, :github_url)
-    end
+  def user_params
+    params.require(:user).permit(:name, :github_url)
+  end
 
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 end
