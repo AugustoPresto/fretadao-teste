@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
   def create
     @user = GithubUserScraper.scrape(params[:user][:name], params[:user][:github_url])
+    Bitlink.create_bitlink(@user) if @user.present?
 
     if @user.save
       redirect_to root_path 

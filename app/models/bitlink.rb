@@ -2,7 +2,7 @@ class Bitlink < ApplicationRecord
   belongs_to :user
 
   class << self
-    def create(user)
+    def create_bitlink(user)
       Bitlink.create(
                       short_url: generate_short_url(user.github_url),
                       long_url: user.github_url,

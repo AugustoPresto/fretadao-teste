@@ -24,18 +24,18 @@ class GithubUserScraper
                                                                         .join("")
                                                                         .to_i
 
-      user = User.new(
-                      name: name,
-                      github_url: github_url,
-                      nickname: nickname,
-                      organization: (organization if organization.present?),
-                      location: (location if location.present?),
-                      followers: followers,
-                      following: following,
-                      stars: stars,
-                      last_year_contributions: last_year_contributions,
-                      avatar_url: avatar_url
-                    )
+      scraped_user = User.new(
+                              name: name,
+                              github_url: github_url,
+                              nickname: nickname,
+                              organization: (organization if organization.present?),
+                              location: (location if location.present?),
+                              followers: followers,
+                              following: following,
+                              stars: stars,
+                              last_year_contributions: last_year_contributions,
+                              avatar_url: avatar_url
+                            )
     end
 
     def followers_and_following_to_i(string)
