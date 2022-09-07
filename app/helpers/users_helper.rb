@@ -1,4 +1,13 @@
 module UsersHelper
+  FORM_TITLES = {
+    "users" => {
+                "new" => { title: "Create your GitHub user",
+                           btn_text: "Create user!" },
+                "edit" => { title: "Edit user",
+                            btn_text: "Update" }
+               }
+  }
+
   def users_list
     if @users.class == String
       tag.span(@users, class: "d-flex justify-content-center")
@@ -46,5 +55,13 @@ module UsersHelper
 
   def display_location
     @user.location.present? ? tag.p("Localização: #{@user.location}") : nil
+  end
+
+  def create_or_edit_title
+    tag.h3("#{FORM_TITLES.dig(controller_name, action_name, :title)}", class: "text-center")
+  end
+
+  def form_button_text(f)
+    f.submit("#{FORM_TITLES.dig(controller_name, action_name, :btn_text)}", class: "btn btn-outline-success mt-2")
   end
 end

@@ -40,9 +40,9 @@ class UsersController < ApplicationController
 
   private
 
-    # def users_params
-    #   params.require(:user).permit(:name, :nickname, :github_url, :organization, :location)
-    # end
+    def users_params
+      params.require(:user).permit(:name, :github_url)
+    end
 
     def set_user
       @user = User.find(params[:id])

@@ -1,0 +1,8 @@
+<div class="container w-25 my-auto align-items-center justify-content-center flex-column mt-5">
+  <%= create_or_edit_title %>
+  <%= simple_form_for @user, html: { class: "d-flex flex-column my-4 justify-content-center" } do |f| %>
+      <%= f.input :name, placeholder: "Type your name", html: { class: "form-control me-2" } %>
+      <%= f.input :github_url, placeholder: "http://www.github.com/your-gh-link", html: { class: "form-control me-2" } %>
+      <%= form_button_text(f) %>
+  <% end %>
+</div>
