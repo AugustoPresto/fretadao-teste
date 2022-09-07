@@ -34,10 +34,10 @@ module UsersHelper
     tag.p("Name: #{@user.name}", class: "mt-3") +
     tag.p("GitHub nickname: #{@user.nickname}") +
     gh_profile_link_div +
-    tag.p("Seguidores: #{@user.followers}") +
-    tag.p("Seguindo: #{@user.following}") +
-    tag.p("Estrelas: #{@user.stars}") +
-    tag.p("Contribuições no último ano: #{@user.last_year_contributions}") +
+    tag.p("Followers: #{@user.followers}") +
+    tag.p("Following: #{@user.following}") +
+    tag.p("Stars: #{@user.stars}") +
+    tag.p("Last year contributions: #{@user.last_year_contributions}") +
     display_organization +
     display_location
   end
@@ -50,11 +50,11 @@ module UsersHelper
   end
 
   def display_organization
-    @user.organization.present? ? tag.p("Organização: #{@user.organization}") : nil
+    @user.organization.present? ? tag.p("Organization: #{@user.organization}") : nil
   end
 
   def display_location
-    @user.location.present? ? tag.p("Localização: #{@user.location}") : nil
+    @user.location.present? ? tag.p("Location: #{@user.location}") : nil
   end
 
   def create_or_edit_title
@@ -63,5 +63,11 @@ module UsersHelper
 
   def form_button_text(f)
     f.submit("#{FORM_TITLES.dig(controller_name, action_name, :btn_text)}", class: "btn btn-outline-success mt-2")
+  end
+
+  def user_page_btns
+    link_to("Update with GH info", edit_user_path(@user), class: "btn btn-outline-success") +
+    link_to("Edit user", edit_user_path(@user), class: "btn btn-outline-secondary") +
+    link_to("Delete user", user_path(@user), method: :delete, class: "btn btn-outline-danger")
   end
 end

@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = GithubUserScraper.scrape(params[:user][:name], params[:user][:github_url])
+    @user = GithubUserScraper.scrape(user_params)
     Bitlink.create_bitlink(@user) if @user.present?
 
     if @user.save
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(users_params)
+    @user.update(user_params)
     redirect_to root_path
   end
 
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
   private
 
-    def users_params
+    def user_params
       params.require(:user).permit(:name, :github_url)
     end
 

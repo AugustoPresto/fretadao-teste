@@ -1,8 +1,8 @@
 class GithubUserScraper
 
   class << self
-    def scrape(name, url)
-      github_url = url
+    def scrape(user_params)
+      github_url = user_params[:github_url]
       html_file = URI.open(github_url).read
       @html_doc = Nokogiri::HTML(html_file)
 
@@ -25,8 +25,8 @@ class GithubUserScraper
                                                                         .to_i
 
       scraped_user = User.new(
-                              name: name,
-                              github_url: github_url,
+                              name: user_params[:name],
+                              github_url: user_params[:github_url],
                               nickname: nickname,
                               organization: (organization if organization.present?),
                               location: (location if location.present?),
