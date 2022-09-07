@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_05_235011) do
+ActiveRecord::Schema.define(version: 2022_09_07_133818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bitlinks", force: :cascade do |t|
+    t.string "short_url"
+    t.string "long_url"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_bitlinks_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -30,4 +39,5 @@ ActiveRecord::Schema.define(version: 2022_09_05_235011) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "bitlinks", "users"
 end
