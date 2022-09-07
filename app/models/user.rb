@@ -5,6 +5,7 @@ class User < ApplicationRecord
   def self.search_all_fields(query)
     results = where('name ILIKE :search
                     OR nickname ILIKE :search
+                    OR github_url ILIKE :search
                     OR organization ILIKE :search
                     OR location ILIKE :search',
                     search: "%#{query}%")
