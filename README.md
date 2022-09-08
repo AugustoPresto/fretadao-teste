@@ -19,8 +19,8 @@ Para acessar em produção: [fretadao-teste.herokuapp.com](https://fretadao-test
   - Crie uma conta no [Bit.ly](https://bitly.com), caso ainda não tenha.
   - Acesse [este link](https://app.bitly.com/settings/api/), escreva sua senha no campo indicado e gere um novo token.
   - Agora, na pasta geral do app:
-    `touch .env`
-    `echo '.env*' >> .gitignore`
+    - `touch .env`
+    - `echo '.env*' >> .gitignore`
   - Dentro do arquivo .env escreva:
     `BITLY_TOKEN="seutokengerado"`
   - Tenha certeza de que o arquivo .env não está sendo enviado para o seu repositório remoto no GitHub.
@@ -37,7 +37,7 @@ Para acessar em produção: [fretadao-teste.herokuapp.com](https://fretadao-test
   - `rails s`
   - `bundle exec sidekiq`
 
-* Caso seja necessário instalar o Redis (dependência do Sidekiq): (Instruções para Ubuntu: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04)
+* Caso seja necessário instalar o Redis (dependência do Sidekiq). Instruções para Ubuntu: https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04
 
 
 ## Como funciona:
