@@ -56,7 +56,7 @@ Com as informações, o app automaticamente faz o `scrape` da página para extra
 Com isso, é gerado e atualizado uma instância do modelo `User` e outra do modelo `Bitlink`, dependente do `User`.
 Caso o perfil tenha sido atualizado ao longo do tempo, o usuário pode atualizar manualmente clicando no botão `Update GH Info` dentro da página do perfil. Para que isso aconteça, é chamado um background job que faz novamente o `scrape` da página e atualiza o `User`.
 
-Os links dos perfis são encurtados usando `gem bitly`, por sua fácil implementação e identificação de bus, além da melhor visualização dos resultados para o usuário.
+Os links dos perfis são encurtados usando `gem bitly`, por sua fácil implementação e identificação de bugs, além da melhor visualização dos resultados para o usuário.
 
 * Execute a suite de testes com:
   - `bundle exec rspec`
