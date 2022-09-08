@@ -3,6 +3,7 @@
   <%= simple_form_for @user, html: { class: "d-flex flex-column my-4 justify-content-center" } do |f| %>
       <%= f.input :name, placeholder: "Type your name", html: { class: "form-control me-2" } %>
       <%= f.input :github_url, placeholder: "http://www.github.com/your-gh-link", html: { class: "form-control me-2" } %>
+      <%= f.hint "GitHub URL must start with 'https://github.com/'" %>
       <%= form_button_text(f) %>
   <% end %>
 </div>
