@@ -14,15 +14,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    # creates user by scraping GH URL
+    # Checks if provided URL is valid, creates user by scraping GH URL
     # and generates shortened link
-    @user = GithubUserScraper.scrape(user_params)
-    Bitlink.create_bitlink(@user) if @user.present?
-
-    if @user.save
-      redirect_to user_path(@user)
+    @user = User.new
+    if valid_github_url?(user_params[:github_url])
+      @user = GithubUserScraper.scrape(user_params)
+      Bitlink.create_bitlink(@user) if @user.present?
+      redirect_to user_path(@user) if @user.save
     else
-      render :new
+      flash[:alert] = 'Please provide a valid GitHub URL'
+      redirect_to new_user_path
     end
   end
 
@@ -57,5 +58,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def valid_github_url?(url)
+    url.match?(/\A((http|https):\/\/)?(www.)?github.com/)
   end
 end

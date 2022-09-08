@@ -5,5 +5,9 @@
       <%= f.input :github_url, placeholder: "http://www.github.com/your-gh-link", html: { class: "form-control me-2" } %>
       <%= f.hint "GitHub URL must start with 'https://github.com/'" %>
       <%= form_button_text(f) %>
+
+        <% flash.each do |nome, mensagem| %>
+          <%= content_tag :div, mensagem, class: nome %>
+        <% end %>
   <% end %>
 </div>
